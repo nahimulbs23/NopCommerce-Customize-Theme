@@ -8705,11 +8705,20 @@ label, label + * {
     background-color:aliceblue;
     border-radius:1%;
     padding:5px;
+    position:relative;
   }
+    .news-list-homepage .news-item .buttons {
+      position: absolute; /* Position the buttons relative to the parent */
+      bottom: 20px; /* Align to the bottom */
+      left: 0; /* Optional: Align to the left */
+      width: 100%; /* Optional: Make the buttons span the full width */
+      text-align: center; /* Center the buttons horizontally */
+      border-radius:10px;
+    }
 
-  .news-list-homepage .news-item:nth-child(3n+1) {
-    clear: both;
-  }
+    .news-list-homepage .news-item:nth-child(3n+1) {
+      clear: both;
+    }
 
   .news-list-homepage .news-item:only-child {
     float: none;

@@ -1,0 +1,11 @@
+{
+  "Group": "Widgets",
+  "FriendlyName": "Special Offers widget",
+  "SystemName": "Widgets.SpecialOffers",
+  "Version": "4.80.1",
+  "SupportedVersions": [ "4.80" ],
+  "Author": "Nahimul Islam",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.SpecialOffers.dll",
+  "Description": "This plugin allows you to change the contents of main page slider"
+}
