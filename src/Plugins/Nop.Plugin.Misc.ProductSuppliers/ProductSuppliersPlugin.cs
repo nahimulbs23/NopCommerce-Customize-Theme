@@ -1,13 +1,14 @@
-﻿using Nop.Services.Cms;
+﻿using Nop.Plugin.Misc.ProductSuppliers.Controllers;
+using Nop.Services.Cms;
 using Nop.Services.Events;
 using Nop.Services.Plugins;
 using Nop.Services.Security;
 using Nop.Web.Framework.Events;
 using Nop.Web.Framework.Menu;
 
-namespace Nop.Plugin.Misc.Suppliers;
+namespace Nop.Plugin.Misc.ProductSuppliers;
 
-public class SuppliersPlugin : BasePlugin
+public class ProductSuppliersPlugin : BasePlugin
 {
 
     //public bool HideInWidgetList => false;
@@ -44,13 +45,12 @@ public class EventConsumer : IConsumer<AdminMenuCreatedEvent>
         eventMessage.RootMenuItem.InsertBefore("Local plugins",
             new AdminMenuItem
             {
-                SystemName = "YourCustomSystemName",
-                Title = "Plugin Title",
-                Url = eventMessage.GetMenuItemUrl("CONTROLLER_NAME", "ACTION_NAME"),
+                SystemName = "Misc.ProductSupliers",
+                Title = "Product Supliers",
+                Url = eventMessage.GetMenuItemUrl("ProductSuppliers", "Index"),
                 IconClass = "far fa-dot-circle",
                 Visible = true,
             });
 
-        await Task.CompletedTask;
     }
 }

@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Copyright>Copyright © Naim Solutions, Ltd</Copyright>
-    <Company>Brainstation 23, Ltd</Company>
-    <Authors>Naim Islam</Authors>
+    <Company>Naim Solutions, Ltd</Company>
+    <Authors>Naim Solutions, Ltd</Authors>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://www.nopcommerce.com/</PackageProjectUrl>
     <RepositoryUrl></RepositoryUrl>
@@ -15,7 +15,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="logo.png" />
     <None Remove="plugin.json" />
     <None Remove="Views\ManufacturersSlider.cshtml" />
   </ItemGroup>
@@ -27,16 +26,27 @@
     <Content Include="plugin.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\ManufacturersSlider.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="SuppliersPlugin.cs">
+    <Compile Update="Components\ManufacturersSwiperWidgetViewComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="Components\SpecialOffersWidgetViewComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="ManufacturersSwiper.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="SpecialOffersPlugin.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>
-    <!-- This target execute after "Build" target -->
+  <!-- This target execute after "Build" target -->
   <Target Name="NopTarget" AfterTargets="Build">
     <!-- Delete unnecessary libraries from plugins path -->
     <MSBuild Projects="@(ClearPluginAssemblies)" Properties="PluginPath=$(OutDir)" Targets="NopClear" />
   </Target>
-
 </Project>

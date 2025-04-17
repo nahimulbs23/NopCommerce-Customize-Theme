@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Product Suppliers",
+  "SystemName": "Misc.ProductSuppliers",
+  "Version": "4.80.1",
+  "SupportedVersions": [ "4.80" ],
+  "Author": "Nahimul Islam",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.ProductSuppliers.dll",
+  "Description": "This plugin allows to integrate with Product Suppliers Management"
+}
