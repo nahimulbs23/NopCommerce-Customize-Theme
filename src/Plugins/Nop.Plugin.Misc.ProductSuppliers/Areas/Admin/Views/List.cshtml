@@ -1,9 +1,9 @@
-﻿@model Nop.Plugin.Misc.ProductSuppliers.Models.ProductSupplierSearchModel
+﻿@model ProductSupplierSearchModel
 @{
-	ViewBag.PageTitle = "Admin.Product Supplier";
+	ViewBag.PageTitle = T("Admin.ProductSuppliers.ProductSupplies").Text;
 	Layout = "_AdminLayout";
 	//active menu item (system name)
-	// NopHtml.SetActiveMenuItemSystemName("Product Suppliers");
+	NopHtml.SetActiveMenuItemSystemName("ProductSuppliers");
 }
 
 @{
@@ -13,10 +13,10 @@
 
 <div class="content-header clearfix">
 	<h1 class="float-left">
-		@T("Admin.ProductSuppliers")
+		@T("Admin.ProductSuppliers.ProductSupplies")
 	</h1>
 	<div class="float-right">
-		<a asp-action="Create" class="btn btn-primary">
+		<a asp-controller="ProductSuppliers" asp-action="Create" class="btn btn-primary">
 			<i class="fas fa-square-plus"></i>
 			@T("Admin.Common.AddNew")
 		</a>
@@ -41,27 +41,27 @@
 								<div class="col-md-6">
 									<div class="form-group row">
 										<div class="col-md-4">
-											<nop-label asp-for="Name" />
+											<nop-label asp-for="SearchName" />
 										</div>
 										<div class="col-md-8">
-											<nop-editor asp-for="Name" />
+											<nop-editor asp-for="SearchName" />
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group row">
 										<div class="col-md-4">
-											<nop-label asp-for="Email" />
+											<nop-label asp-for="SearchEmail" />
 										</div>
 										<div class="col-md-8">
-											<nop-editor asp-for="Email" />
+											<nop-editor asp-for="SearchEmail" />
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="text-center col-12">
-									<button type="button" id="search-vendors" class="btn btn-primary btn-search">
+									<button type="button" id="search-suppliers" class="btn btn-primary btn-search">
 										<i class="fas fa-magnifying-glass"></i>
 										@T("Admin.Common.Search")
 									</button>
@@ -77,9 +77,9 @@
 
 						@await Html.PartialAsync("Table", new DataTablesModel
  {
-	 Name = "vendors-grid",
-	 UrlRead = new DataUrl("List", "Vendor", null),
-	 SearchButtonId = "search-vendors",
+	 Name = "Product-supplier-grid",
+	 UrlRead = new DataUrl("List", "ProductSuppliers", null),
+	 SearchButtonId = "search-suppliers",
 	 Length = Model.PageSize,
 	 LengthMenu = Model.AvailablePageSizes,
 	 Filters = new List<FilterParameter>
@@ -89,29 +89,29 @@
 						},
 	 ColumnCollection = new List<ColumnProperty>
 						{
-						new ColumnProperty(nameof(VendorModel.Name))
+						new ColumnProperty(nameof(ProductSupplierModel.Name))
 						{
-						Title = T("Admin.Vendors.Fields.Name").Text,
+						Title = T("Admin.ProductSupplies.Fields.Name").Text,
 						Width = "300"
 						},
-						new ColumnProperty(nameof(VendorModel.Email))
+						new ColumnProperty(nameof(ProductSupplierModel.Email))
 						{
-						Title = T("Admin.Vendors.Fields.Email").Text,
+						Title = T("Admin.ProductSupplies.Fields.Email").Text,
 						Width = "300"
 						},
-						new ColumnProperty(nameof(VendorModel.Active))
+						new ColumnProperty(nameof(ProductSupplierModel.Active))
 						{
-						Title = T("Admin.Vendors.Fields.Active").Text,
+						Title = T("Admin.ProductSupplies.Fields.Active").Text,
 						Width = "50",
 						ClassName =  NopColumnClassDefaults.CenterAll,
 						Render = new RenderBoolean()
 						},
-						new ColumnProperty(nameof(VendorModel.Id))
+						new ColumnProperty(nameof(ProductSupplierModel.Id))
 						{
 						Title = T("Admin.Common.Edit").Text,
 						Width = "50",
 						ClassName =  NopColumnClassDefaults.Button,
-						Render = new RenderButtonEdit(new DataUrl("~/Admin/Vendor/Edit"))
+						Render = new RenderButtonEdit(new DataUrl("~/Admin/ProductSuppliers/Edit"))
 						}
 						}
  })

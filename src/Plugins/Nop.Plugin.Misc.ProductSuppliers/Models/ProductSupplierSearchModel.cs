@@ -1,14 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Nop.Plugin.Misc.ProductSuppliers.Domains;
+﻿using Nop.Web.Framework.Models;
+using Nop.Web.Framework.Mvc.ModelBinding;
 
 namespace Nop.Plugin.Misc.ProductSuppliers.Models;
-public class ProductSupplierSearchModel
+
+/// <summary>
+/// Represents a vendor search model
+/// </summary>
+public partial record ProductSupplierSearchModel : BaseSearchModel
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public IList<ProductSupplier> Suppliers { get; set; } = new List<ProductSupplier>();
+    #region Properties
+
+    [NopResourceDisplayName("Admin.ProductSupplier.List.SearchName")]
+    public string SearchName { get; set; }
+
+    [NopResourceDisplayName("Admin.ProductSupplier.List.SearchEmail")]
+    public string SearchEmail { get; set; }
+
+    #endregion
 }

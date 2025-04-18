@@ -1,27 +1,38 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Nop.Plugin.Misc.ProductSuppliers.Services;
+using Nop.Core.Configuration;
 using Nop.Core.Infrastructure;
+using Autofac;
+using Nop.Plugin.Misc.ProductSuppliers.Services;
+using Nop.Plugin.Misc.ProductSuppliers.Factories;
+using Nop.Plugin.Misc.ProductSuppliers.Infrastructure.Mapper;
+using Nop.Plugin.Misc.ProductSupplier.Factories;
+using Microsoft.AspNetCore.Mvc.Razor;
 
-namespace Nop.Plugin.Misc.ProductSuppliers.Infrastructure;
-public class PluginNopStrartup : INopStartup // Corrected the interface name
+namespace Nop.Plugin.Misc.ProductSuppliers.Infrastructure
 {
-    public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    public class PluginNopStartup : INopStartup
     {
-        services.AddScoped<IProductSupplierService, ProductSuppliersService>();
-    }
+        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        {
+            // Register services
+            services.AddScoped<IProductSupplierService, ProductSuppliersService>();
+            services.AddScoped<IProductSupplierModelFactory, ProductSupplierModelFactory>();
+            // Register AutoMapper
+            services.AddAutoMapper(typeof(ProductSupplierAutoMapperProfile).Assembly);
+            //ViewLocation Expander
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                options.ViewLocationExpanders.Add(new PluginViewLocationExpander());
+            });
 
-    /// <summary>
-    /// Configure the using of added middleware
-    /// </summary>
-    /// <param name="application">Builder for configuring an application's request pipeline</param>
-    public void Configure(IApplicationBuilder application)
-    {
-    }
+        }
+        public void Configure(IApplicationBuilder application)
+        {
+            // No middleware needed for now
+        }
 
-    /// <summary>
-    /// Gets order of this startup configuration implementation
-    /// </summary>
-    public int Order => 3000;
+        public int Order => 3000;
+    }
 }

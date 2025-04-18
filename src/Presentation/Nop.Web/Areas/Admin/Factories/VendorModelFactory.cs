@@ -20,6 +20,7 @@ using Nop.Web.Framework.Models.Extensions;
 namespace Nop.Web.Areas.Admin.Factories;
 
 /// <summary>
+/// 
 /// Represents the vendor model factory implementation
 /// </summary>
 public partial class VendorModelFactory : IVendorModelFactory
